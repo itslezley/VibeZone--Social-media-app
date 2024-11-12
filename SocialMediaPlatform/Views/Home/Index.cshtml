@@ -1,0 +1,137 @@
+﻿@model SocialMediaPlatform.Models.Post
+@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Post successfully Posted",
+            showConfirmButton: false,
+            timer: 3000
+        });
+    </script>
+}
+<div class="row">
+
+    <div class="col l3 xl2 friends">
+
+        <ul class="collection hide-on-med-and-down">
+            @foreach (var item in ViewData["Creators"] as IEnumerable<SocialMediaPlatform.Models.Creator>)
+            {
+                <li class="collection-item avatar friends">
+                    <img src="~/Image/user_icon.png" alt="" class="circle">
+                    <span class="title">@Html.DisplayFor(modelItem => item.Username)</span>
+                <p>
+                    10 mutual friend <br>
+                    <a href="#" onclick="M.toast({html: 'Request accepted'})" class="btn blue darken-2 waves-effect waves-green">Follow</a>
+                    <a href="#" onclick="M.toast({html: 'Request deleted'})" class="btn grey lighten-6 waves-effect waves-red">Delete </a>
+                </p>
+                
+            </li>
+            }
+            
+        </ul>
+    </div>
+
+   
+            <div class="col s12 l9">
+            <div class="row">
+
+                <!--first box-->
+            @foreach (var post in ViewData["Posts"] as IEnumerable<SocialMediaPlatform.Models.Post>)
+                {
+                <div class="col s12 xl5 offset-xl1 post-box z-depth-3">
+
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                            <img src="~/Image/default_profile.png" alt="" class="circle">
+                            <span class="title"></span>
+                            <p>
+                                @Html.DisplayFor(modelItem => post.Creator.Username) <br>
+                                2 hours
+                            </p>
+                        </li>
+                    </ul>
+
+                    <div class="post_images ">
+                        
+                        @if (post.Photo != null)
+                        {
+                            <img  class="materialboxed" src="~/@post.Photo?.PhotoUrl" />
+                        }else{
+                            <video width="400" height="240" controls autoplay muted>
+                                <source src="~/@post.Video?.VideoUrl"  />
+                            </video>
+                        }
+                        <div class="post-message">
+                            <p class="center-align">
+                               @post.Content
+                            </p>
+                        </div>
+                        <div class="reactions">
+
+                            <a href="#" id="floating" class="btn-floating blue darken-3  pulse waves-effect waves-teal"> <i class="material-icons">recommend</i></a>
+                            <a href="#" class="btn-floating pink pulse  waves-effect waves-red"> <i class="material-icons">favorite</i></a>
+                            <a href="#" class="btn-floating amber lighten-2 pulse  waves-effect waves-yellow"> <i class="material-icons">comment</i></a>
+                            <a href="#" class=" btn-floating green pulse  waves-effect waves-green"> <i class="material-icons ">share</i></a>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                
+                }
+            </div>
+       </div>
+
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large blue modal-trigger" data-target="modal1" href="#modal1">
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
+
+        <!--Modal structure or  create post structure-->
+        
+        <div id="modal1" class="modal  z-deth-5">
+            <div class="modal-content">
+               <h3 class="center-align blue-text"> Create Post</h3>
+                <form asp-controller="Creator" asp-action="CreatePost" method="post" enctype="multipart/form-data" >
+                    <!--For text area-->
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <textarea id="textarea2"  asp-for="Content" name="Content" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="textarea2" asp-for="Content">Textarea</label>
+                        </div>
+                   
+                    <!--For upload-->
+                    <div class="col s10 file-field input-field">
+                        <div class="btn">
+                                <span><i class="material-icons">attach_file</i></span>
+                                <input type="file" name="MediaFile" accept="image/*,video/*">
+                        </div>
+                        <div class="file-path-wrapper">
+                                 <input class="file-path validate" type="text" placeholder="">
+                        </div>
+                    </div>
+                        
+                    </div>
+                    <div class="row">
+                        <button class="btn pulse waves-effect waves-green center" type="submit">
+                            <span class="center-text">Submit</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+    </div>
+
+</div>

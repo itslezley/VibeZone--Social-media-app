@@ -1,0 +1,54 @@
+﻿@using SocialMediaPlatform.Models.Dtos
+@model LoginDto
+@{
+    ViewData["Title"] = "Login";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your have registered successfully<br/>Please login now",
+            showConfirmButton: false,
+            timer: 3000
+        });
+    </script>
+}
+<div class="container">
+<div class="row z-depth-4 reg-form">
+    <div class="col s12 m6 center-align">
+        <img src="~/Image/registration.gif" height="500" width="400" alt="Login Animation" />
+    </div>
+    <div class="col s12 m6 ">
+        <div class="row">
+            <h3>Login</h3>
+            <form class="col s11 " asp-action="Login" asp-controller="Home" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="UserEmail" id="email" type="email" class="validate">
+                        <label asp-for="UserEmail">Email</label>
+                        <span asp-validation-for="UserEmail" class="text-danger" data-error="wrong" data-success="right"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="UserPassword" id="password" type="password" class="validate">
+                        <label asp-for="UserPassword">Password</label>
+                        <span class="text-danger" data-error="wrong" asp-validation-for="UserPassword" data-success="right"></span>
+                    </div>
+                </div>
+                
+                <div class="center-align">
+                    <button class="btn">
+                        Submit
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SocialMediaPlatform.Models.Video>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container videoContainer">
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="vert-align">
+        <p class="center-align">No Viideos Available</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var video in Model)
+        {
+            <div class="video">
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <img src="image/slider/slider2.jpg" alt="" class="circle">
+                        <span class="title"></span>
+                        <p>
+                            Jane Doe <br>
+                            2 hours age
+                        </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                </ul>
+
+                <div class="video-container">
+                    <iframe width="853" height="480" src="~/@video.VideoUrl" frameborder="0" allowfullscreen muted></iframe>
+                </div>
+
+            </div>
+        }
+
+    }
+
+</div>

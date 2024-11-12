@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SocialMediaPlatform.Models.Creator>
+@{
+    ViewData["Title"] = "Chats Page";
+}
+<div class="chats">
+    <div class="container">
+        <h4 class="left-align">Chats</h4>
+        <ul class="collection">
+            @foreach (var creator in Model)
+            {
+                <form id="startChat-@creator.CreatorID" method="POST" asp-controller="ChatService" asp-action="message">
+                    <input type="hidden" name="CreatorID" asp-for="@creator.CreatorID" value="@creator.CreatorID" />
+                    
+                <li  class="collection-item avatar" onclick="submitForm(@creator.CreatorID)">
+                    <img src="~/Image/default_profile.png" alt="" class="circle">
+                    <span class="title">@creator.Username</span>
+                <p>
+                    Hi, I am on VibeZone
+                </p>
+                <span href="#!" class="secondary-content">22:15</span>
+            </li> 
+            </form>
+            }
+    </div>
+</div>

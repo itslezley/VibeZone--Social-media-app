@@ -1,0 +1,77 @@
+﻿@model Creator
+@{
+    ViewData["Title"] = "Registration"; 
+}
+<div class="container">
+<div class="row z-depth-4 reg-form">
+    <div class="col s12 m6 center-align">
+        <img src="~/Image/registration.gif" height="500" width="400" alt="Registration Animation"/>
+    </div>
+    <div class="col s12 m6 ">
+        <div class="row">
+            <h3>Registration</h3>
+            <form class="col s11 " asp-action="Registration" asp-controller="Home" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <input placeholder="Name" asp-for="UserDetails.Name"  type="text" class="validate">
+                        <label asp-for="UserDetails.Name">First Name</label>
+                        <span class="text-danger" asp-validation-for="UserDetails.Name"></span>
+                    </div>
+                    <div class="input-field col s5">
+                        <input  placeholder="Surname" type="text" asp-for="UserDetails.Surname" class="validate">
+                        <label asp-for="UserDetails.Surname">Last Name</label>
+                        <span class="text-danger" asp-validation-for="UserDetails.Surname" data-error="wrong" data-success="right"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Username" type="text" class="validate">
+                        <label  asp-for="Username" >Username</label>
+                        <span asp-validation-for="Username" class="text-danger" data-error="wrong" data-success="right"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="UserDetails.UserEmail" id="email" type="email" class="validate">
+                        <label asp-for="UserDetails.UserEmail">Email</label>
+                        <span asp-validation-for="UserDetails.UserEmail" class="text-danger" data-error="wrong" data-success="right"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="UserDetails.UserPassword" id="password" type="password" class="validate">
+                        <label asp-for="UserDetails.UserPassword">Password</label>
+                        <span id="password-error" class="text-danger" data-error="wrong" asp-validation-for="UserDetails.UserPassword" data-success="right"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="UserDetails.ConfirmPassword" id="password" type="password" class="validate">
+                        <label asp-for="UserDetails.ConfirmPassword" >Confirm Password</label>
+                        <span class="text-danger" data-error="wrong" asp-validation-for="UserDetails.ConfirmPassword"  data-success="right"></span>
+                    </div>
+                </div>
+                <div class="center-align">
+                    <button class="btn">
+                        Submit
+                    </button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#password").blur(function () {
+            var password = $(this).val();
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!pattern.test(password)) {
+                $("#password-error").text("Password must be at least 8 characters long and contain at least one uppercase and one lowercase letter.");
+            } else {
+                $("#password-error").text("");
+            }
+        });
+</script>

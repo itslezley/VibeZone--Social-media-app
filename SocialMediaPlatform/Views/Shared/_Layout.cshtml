@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SocialMediaPlatform</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SocialMediaPlatform.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="nav-wrapper grey lighten-3">
+
+            <a class="brand-logo " asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Image/logo.png" height="70" width="120" /></a>
+            <ul class="right hide-on-med-and-down">
+                <li class="tooltipped" data-position="bottom" data-tooltip="Home">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="material-icons light-blue-text lighten-4">home</i>
+                    </a>
+                </li>
+                <li class="tooltipped" data-position="bottom" data-tooltip="Message">
+                    <a class="" asp-area="" asp-controller="ChatService" asp-action="Chat">
+                        <i class="material-icons light-blue-text lighten-4">chat</i>
+                    </a>
+                </li>
+                <li class="tooltipped" data-position="bottom" data-tooltip="Videos">
+                    <a class="" asp-area="" asp-controller="Creator" asp-action="Video">
+                        <i class="material-icons light-blue-text lighten-4">videocam</i>
+                    </a>
+                </li>
+                <li class="tooltipped" data-position="bottom" data-tooltip="Profile">
+                        <a class='dropdown-trigger' href='#' data-target='dropdown1'><i class="material-icons light-blue-text lighten-4">person</i></a>
+                    
+                </li>
+            </ul>
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a asp-controller="Creator" asp-action="Profile"><i class="material-icons light-blue-text lighten-4">person</i>Profile</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a asp-controller="Home" asp-action="Login"><i class="material-icons light-blue-text lighten-4">login</i>Login</a></li>
+                <li><a asp-controller="Home" asp-action="Registration"><i class="material-icons light-blue-text lighten-4">person_add_alt_1</i>Register</a></li>
+                <li><a asp-controller="Home" asp-action="Logout"><i class="material-icons light-blue-text lighten-4">logout</i>Logout</a></li>
+            </ul>
+
+            <a href="#" class="sidenav-trigger light-blue-text" data-target="mobile-links"><i class="material-icons">menu</i></a>
+        </nav>
+
+        <ul class="sidenav" id="mobile-links">
+            <li>
+                <a class="" asp-area="" asp-controller="Home" asp-action="Login">
+                    Login
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="" asp-controller="Creator" asp-action="Photo">
+                    Photo
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="" asp-controller="Creator" asp-action="Video">
+                    Videocam
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="" asp-controller="Home" asp-action="Index">
+                    Logout
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="" asp-controller="Creator" asp-action="Profile">
+                    Person
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="center-align footer">
+        <div class="container">
+            &copy; 2024 - SocialMediaPlatform - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+
+        $(document).ready(function () {
+            $('.materialboxed').materialbox();
+        });
+        $(document).ready(function () {
+            $('.tooltipped').tooltip();
+        });
+        $('.dropdown-trigger').dropdown();
+
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

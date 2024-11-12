@@ -1,0 +1,87 @@
+﻿@model SocialMediaPlatform.Models.Creator
+@{
+    ViewData["Title"] = "Login";
+}
+<style>
+    .body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .profile-container {
+        width: 300px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+        .profile-image img {
+            width: 100%;
+            height: auto;
+        }
+
+    .profile-details {
+        text-align: center;
+    }
+
+        .profile-details h2 {
+            margin: 10px 0;
+        }
+
+    .profile-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+        .profile-stats div {
+            text-align: center;
+        }
+
+            .profile-stats div span {
+                display: block;
+                font-size: 18px;
+                font-weight: bold;
+            }
+</style>
+<div class="profile-container"> <div class="profile-image">
+    @if (!string.IsNullOrEmpty(Model.ProfileImage))
+        {
+            <p>here with @Model.ProfileImage</p>
+            <img src="~/@Model.ProfileImage" alt="Profile Image">
+        }
+        else
+        {
+         <input type="image" src="~/Image/default_profile.png" alt="Profile Image" id="profileImage"/>
+        }    
+    </div> 
+    <div class="profile-details">
+        <h2 id="username">@Model.Username</h2>
+        <p>Age: <span id="age">@Model.Age</span></p>
+    </div> 
+    <div class="profile-stats"> 
+        <div> <span id="followers">0</span> 
+            <p>Followers</p> 
+            </div> 
+            <div>
+                <span id="following">0</span> 
+                <p>Following</p> 
+            </div> 
+            <div>
+                <span id="posts">0</span> 
+                <p>Posts</p> 
+            </div> 
+            </div>
+            </div>
