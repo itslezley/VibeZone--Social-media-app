@@ -1,0 +1,66 @@
+# Ignore Visual Studio specific files
+.vs/
+*.user
+*.suo
+
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore database context or other sensitive config files
+ApplicationDbContext.cs
+appsettings.json
+appsettings.*.json
+secrets.json
+
+# Ignore dependency directories
+packages/
+node_modules/
+wwwroot/lib/
+
+# Ignore build configuration files
+*.dll
+*.exe
+*.app
+*.log
+*.pid
+*.log
+*.cache
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Ignore Rider and VS Code settings (if applicable)
+.idea/
+.vscode/
+
+# Ignore Resharper files
+_ReSharper*/
+
+# Ignore Publish output folder
+publish/
+
+# Ignore other config files and sensitive info
+*.config
+*.local.config
+.env
+.env.*
+
+# Ignore compiled application files and any debugging files
+*.pdb
+*.mdb
+
+# Ignore test and coverage results
+TestResults/
+*.coverage
+*.coveragexml
+*.codecov
+*.lcov
+
+# Ignore other IDE and development environment settings
+.project
+*.DS_Store
+Thumbs.db
